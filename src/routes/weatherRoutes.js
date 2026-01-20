@@ -1,14 +1,24 @@
 import express from "express";
+import { fetchCurrentWeather, fetchForecast } from "../services/weatherService.js";
 
 const router = express.Router();
 
-router.get("/current", (req, res) => {
-  res.json({ message: "Current weather endpoint works" });
+router.get("/:city", async (req, res) => {
+  try {
+    const data = await fetchCurrentWeather(req.params.city);
+    res.json(data);
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
+  }
 });
 
-router.get("/forecast", (req, res) => {
-  res.json({ message: "Forecast endpoint works" });
+router.get("/:city/forecast", async (req, res) => {
+  try {
+    const data = await fetchForecast(req.params.city);
+    res.json(data);
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
+  }
 });
 
-export default router; // ✅ this line is required for default export
-
+export default router;

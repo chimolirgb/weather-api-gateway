@@ -1,23 +1,21 @@
-const { getCurrentWeather } = require("../services/weatherService");
+import { fetchCurrentWeather, fetchForecast } from "../services/weatherService.js";
 
-exports.getWeather = async (req, res) => {
+export const getCurrentWeather = async (req, res) => {
+  const city = req.params.city;
   try {
-    const city = req.params.city;
-    const data = await getCurrentWeather(city);
-
-    res.json({
-      city: data.name,
-      country: data.sys.country,
-      current: {
-        temperature: data.main.temp,
-        condition: data.weather[0].description,
-        humidity: data.main.humidity,
-        wind_speed: data.wind.speed
-      },
-      cached: false,
-      timestamp: new Date().toISOString()
-    });
+    const data = await fetchCurrentWeather(city);
+    res.json(data);
   } catch (error) {
-    res.status(404).json({ error: "City not found" });
+    res.status(error.status || 500).json({ error: error.message });
+  }
+};
+
+export const getForecast = async (req, res) => {
+  const city = req.params.city;
+  try {
+    const data = await fetchForecast(city);
+    res.json(data);
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message });
   }
 };
