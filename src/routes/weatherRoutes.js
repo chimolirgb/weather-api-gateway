@@ -3,7 +3,7 @@ import { fetchCurrentWeather, fetchForecast } from "../services/weatherService.j
 
 const router = express.Router();
 
-// 1️⃣ Specific route first
+// Specific route first
 router.get("/forecast/:city", async (req, res) => {
   try {
     const data = await fetchForecast(req.params.city);
@@ -13,7 +13,7 @@ router.get("/forecast/:city", async (req, res) => {
   }
 });
 
-// 2️⃣ Generic route second
+//  Generic route second
 router.get("/:city", async (req, res) => {
   try {
     const data = await fetchCurrentWeather(req.params.city);
