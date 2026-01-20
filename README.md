@@ -50,13 +50,13 @@ API Endpoints
 
 
 #### Weather
-Method	        Endpoint	                    Description
+<!-- Method	        Endpoint	                    Description -->
 GET	            /api/weather/:city	            Get current weather for a city
 
 GET             /api/weather/forecast/:city	    Get 5-day forecast for a city
 
 ### Favorites
-Method	    Endpoint	                        Description
+<!-- Method	    Endpoint	                        Description -->
 POST	    /api/favorites	                    Add a city to favorites (JSON body: { "city": "Nairobi" })
 GET     	/api/favorites	                    List all favorite cities with current weather
 DELETE	    /api/favorites/:city	            Remove a city from favorites
