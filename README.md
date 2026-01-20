@@ -61,9 +61,12 @@ GET             /api/weather/forecast/:city
 <!-- Method	    Endpoint	                        Description -->
 POST	    /api/favorites	                   
  Add a city to favorites (JSON body: { "city": "Nairobi" })
+
 GET     	/api/favorites	                    
 List all favorite cities with current weather
-DELETE	    /api/favorites/:city	            
+
+DELETE	    /api/favorites/:city	 
+           
 Remove a city from favorites
 
 
